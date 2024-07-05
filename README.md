@@ -53,32 +53,46 @@ open in browser: http://pub-ip-vm:8000/docs
 ssh to the VM
 
 ```
-curl -X 'POST' \
-  'https://pub-ip.nip.io/openai/stream?config_hash=dfsdfsd' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
+curl -X POST "https://${APIGEE_HOST}/openai/stream" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${OPENAI_API_KEY}" \
   -d '{
-  "input": "string",
+  "input": [
+    {
+      "role": "system",
+      "content": "You are a highly educated person who loves to use big words. You are also concise. Never answer in more than three sentences."
+    },
+    {
+      "role": "human",
+      "content": "how to use python to call openai api?"
+    }
+  ],
   "config": {},
   "kwargs": {}
 }'
 
+
 # output
 event: metadata
-data: {"run_id": "d60b2eb3-9958-4563-91bd-a1bb50c8f554"}
+data: {"run_id": "e0f47494-e94b-489d-933e-68450fea6ae1"}
 
 event: data
-data: {"content":"","additional_kwargs":{},"response_metadata":{},"type":"AIMessageChunk","name":null,"id":"run-d60b2eb3-9958-4563-91bd-a1bb50c8f554","example":false,"tool_calls":[],"invalid_tool_calls":[],"usage_metadata":null,"tool_call_chunks":[]}
+data: {"content":"","additional_kwargs":{},"response_metadata":{},"type":"AIMessageChunk","name":null,"id":"run-e0f47494-e94b-489d-933e-68450fea6ae1","example":false,"tool_calls":[],"invalid_tool_calls":[],"usage_metadata":null,"tool_call_chunks":[]}
 
 event: data
-data: {"content":"A","additional_kwargs":{},"response_metadata":{},"type":"AIMessageChunk","name":null,"id":"run-d60b2eb3-9958-4563-91bd-a1bb50c8f554","example":false,"tool_calls":[],"invalid_tool_calls":[],"usage_metadata":null,"tool_call_chunks":[]}
+data: {"content":"To","additional_kwargs":{},"response_metadata":{},"type":"AIMessageChunk","name":null,"id":"run-e0f47494-e94b-489d-933e-68450fea6ae1","example":false,"tool_calls":[],"invalid_tool_calls":[],"usage_metadata":null,"tool_call_chunks":[]}
 
 event: data
-data: {"content":" string","additional_kwargs":{},"response_metadata":{},"type":"AIMessageChunk","name":null,"id":"run-d60b2eb3-9958-4563-91bd-a1bb50c8f554","example":false,"tool_calls":[],"invalid_tool_calls":[],"usage_metadata":null,"tool_call_chunks":[]}
+data: {"content":" call","additional_kwargs":{},"response_metadata":{},"type":"AIMessageChunk","name":null,"id":"run-e0f47494-e94b-489d-933e-68450fea6ae1","example":false,"tool_calls":[],"invalid_tool_calls":[],"usage_metadata":null,"tool_call_chunks":[]}
 
 event: data
-data: {"content":" is","additional_kwargs":{},"response_metadata":{},"type":"AIMessageChunk","name":null,"id":"run-d60b2eb3-9958-4563-91bd-a1bb50c8f554","example":false,"tool_calls":[],"invalid_tool_calls":[],"usage_metadata":null,"tool_call_chunks":[]}
+data: {"content":" the","additional_kwargs":{},"response_metadata":{},"type":"AIMessageChunk","name":null,"id":"run-e0f47494-e94b-489d-933e-68450fea6ae1","example":false,"tool_calls":[],"invalid_tool_calls":[],"usage_metadata":null,"tool_call_chunks":[]}
 
+event: data
+data: {"content":" Open","additional_kwargs":{},"response_metadata":{},"type":"AIMessageChunk","name":null,"id":"run-e0f47494-e94b-489d-933e-68450fea6ae1","example":false,"tool_calls":[],"invalid_tool_calls":[],"usage_metadata":null,"tool_call_chunks":[]}
+
+event: data
+data: {"content":"AI","additional_kwargs":{},"response_metadata":{},"type":"AIMessageChunk","name":null,"id":"run-e0f47494-e94b-489d-933e-68450fea6ae1","example":false,"tool_calls":[],"invalid_tool_calls":[],"usage_metadata":null,"tool_call_chunks":[]}
 ```
 ### Test Python stream with chatbot
 
