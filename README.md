@@ -3,10 +3,9 @@
 # gpt-bot
 
 ## Architecture
-* Run Chatbot as container on an ubuntu 20 VM using api of GPT 3.5 
+* Run Chatbot as a containerized API server on Ubuntu 20 VM using GPT 3.5 
 * Expose the service via public ip
 * Stream by Apigee X proxy
-
 
 
 ## Step 1: Running in Docker
@@ -113,3 +112,5 @@ for chunk in openai_llm.stream(prompt):
 
 ```
 
+## References
+This solution was tailored from [LangServe]( https://github.com/langchain-ai/langserve.git)
