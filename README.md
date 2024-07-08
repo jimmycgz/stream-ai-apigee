@@ -97,13 +97,17 @@ data: {"content":"AI","additional_kwargs":{},"response_metadata":{},"type":"AIMe
 ### Test Python stream with chatbot
 
 Refer to `stream-ai-apigee/test-local-bot.ipynb`
+
+As needed, you can spin up a container to run python script in the server
 ```
 docker exec -it my-gpt-bot1 bash
+```
 
-   10  pip --version
-   11  python --version
-   12  pip install langchain
-   python
+Some example test steps:
+```
+pip install langchain
+
+python
        from langchain.prompts.chat import ChatPromptTemplate
        from langserve import RemoteRunnable
        openai_llm = RemoteRunnable("https://pub-ip.nip.io/openai/")
@@ -114,13 +118,13 @@ docker exec -it my-gpt-bot1 bash
             "You are a nice person who loves to keep the others happy "
             + "You are also creative and always answer in 300 words.",
         ),
-        ("human", "tell a joke about the summer in 500 words?"),
+        ("human", "tell a joke about the summer in 100 words?"),
     ]
 ).format_messages()
 
 openai_llm.invoke(prompt)
 
-# Steam endpoint /openai/stream
+# Stream endpoint /openai/stream
 for chunk in openai_llm.stream(prompt):
     print(chunk.content, end="", flush=True)
 
